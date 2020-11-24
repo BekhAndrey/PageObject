@@ -24,6 +24,8 @@ public class AdidasWishlistPage {
         WebElement closeDialogBnt = new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.presenceOfElementLocated(closeDialogLocator));
         closeDialogBnt.click();
-        return driver.findElement(wishlistResultLocator).getText();
+        WebElement wishlistResult = new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(wishlistResultLocator));
+        return wishlistResult.getText();
     }
 }
