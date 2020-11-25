@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
 public class AdidasHoodiePage {
 
     private static final String HOODIE_URL = "https://www.adidas.com/us/trefoil-hoodie/DT7963.html";
-    private final By selectSizeLocator = By.xpath("//button[@data-di-id=\"di-id-782932f4-62ee50a0\"]");
+    private final By selectSizeLocator = By.xpath("//button[@data-di-id=\"size_M\"]");
     private final By addToBagLocator = By.xpath("//button[@data-auto-id=\"add-to-bag\"]");
     private final By closeModalLocator = By.xpath("//button[@class=\"gl-modal__close\"]");
     private final By goToBagLocator = By.xpath("//button[@data-auto-id=\"view-bag-desktop\"]");
@@ -25,7 +25,7 @@ public class AdidasHoodiePage {
         this.driver = driver;
     }
 
-    public AdidasHoodiePage openPage(){
+    public AdidasHoodiePage addItemToBag(){
         driver.get(HOODIE_URL);
         WebElement selectSizeBtn = new WebDriverWait(driver,10)
                 .until(ExpectedConditions.presenceOfElementLocated(selectSizeLocator));

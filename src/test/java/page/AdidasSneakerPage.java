@@ -22,7 +22,7 @@ public class AdidasSneakerPage {
         this.driver = driver;
     }
 
-    public AdidasSneakerPage openPage(){
+    public AdidasSneakerPage addItemToWishlist(){
         driver.get(SNEAKER_URL);
         WebElement addToWishlistBtn = new WebDriverWait(driver,10)
                 .until(ExpectedConditions.presenceOfElementLocated(addToWishlistLocator));
