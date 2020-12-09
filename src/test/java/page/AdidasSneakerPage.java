@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 
 public class AdidasSneakerPage {
 
-    private static final String SNEAKER_URL = "https://www.adidas.com/us/nite-jogger-shoes/FV1267.html";
+    private static final String SNEAKER_URL = "https://www.adidas.com/us/nmd_r1-shoes/D96635.html?pr=product_rr&slot=1";
     private final By addToWishlistLocator = By.xpath("//div[@data-auto-id=\"wishlist-button\"]");
     private final By goToWishlistLocator = By.xpath("//div[@class=\"gl-wishlist-icon wishlist_button___3ppwb solid-icon-color___1IHWy\"]");
     private WebDriver driver;
