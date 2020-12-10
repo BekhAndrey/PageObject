@@ -6,14 +6,12 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import page.AdidasHoodiePage;
-import page.AdidasSneakerPage;
+import page.HoodiePage;
+import page.SneakerPage;
 
 
-public class WebDriverAdidasTest {
+public class AdidasTest {
 
-    public static String expectedWishlistResult = "1 ITEM";
-    public static String expectedDeliveryValue = "FREE";
     private WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
@@ -24,7 +22,8 @@ public class WebDriverAdidasTest {
 
     @Test
     public void addToWishlistTest() {
-        String wishlistResult = new AdidasSneakerPage(driver)
+        String expectedWishlistResult = "1 ITEM";
+        String wishlistResult = new SneakerPage(driver,"https://www.adidas.com/us/nmd_r1-shoes/D96635.html?pr=product_rr&slot=1")
                 .addItemToWishlist()
                 .openWishlistPage()
                 .getWishlistResult();
@@ -33,8 +32,9 @@ public class WebDriverAdidasTest {
 
     @Test
     public void freeDeliveryTest() {
-        String deliveryValue = new AdidasHoodiePage(driver)
-                .addItemToBag()
+        String expectedDeliveryValue = "FREE";
+        String deliveryValue = new HoodiePage(driver,"https://www.adidas.com/us/trefoil-hoodie/DT7963.html")
+                .addItemsToBag()
                 .getDeliveryValue();
         Assert.assertEquals(deliveryValue, expectedDeliveryValue);
     }

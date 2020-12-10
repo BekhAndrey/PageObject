@@ -10,13 +10,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebElement;
 
-public class AdidasWishlistPage {
+public class WishlistPage {
 
     private WebDriver driver;
     private final By closeDialogLocator = By.xpath("//button[@class=\"gl-modal__close\"]");
     private final By wishlistResultLocator = By.xpath("//div[@class=\"col-s-12 col-l-16 col-xl-18 \"]/p");
 
-    public AdidasWishlistPage(WebDriver driver){
+    public WishlistPage(WebDriver driver){
         this.driver = driver;
     }
 
