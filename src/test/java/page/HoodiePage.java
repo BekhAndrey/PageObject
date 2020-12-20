@@ -12,6 +12,8 @@ public class HoodiePage {
     private final By closeModalLocator = By.xpath("//button[@class=\"gl-modal__close\"]");
     private final By goToBagLocator = By.xpath("//button[@data-auto-id=\"view-bag-desktop\"]");
     private final By deliveryValueLocator = By.xpath("//span[@data-auto-id=\"glass-cart-summary-delivery-value\"]");
+    private final By addToWishlistLocator = By.xpath("//div[@data-auto-id=\"wishlist-button\"]");
+    private final By goToWishlistLocator = By.xpath("//div[@class=\"right-side-menu___16Ik7\"]/div[3]");
     private WebDriver driver;
     private String url;
 
@@ -21,18 +23,44 @@ public class HoodiePage {
         this.url = hoodieUrl;
     }
 
-    public HoodiePage addItemsToBag(){
+    public HoodiePage openPage()
+    {
         driver.get(url);
+        return this;
+    }
+
+    public HoodiePage addItemToWishlist(){
+        WebElement addToWishlistBtn = new WebDriverWait(driver,10)
+                .until(ExpectedConditions.presenceOfElementLocated(addToWishlistLocator));
+        addToWishlistBtn.click();
+        return this;
+    }
+
+    public WishlistPage openWishlistPage(){
+        WebElement goToWishlistBtn = new WebDriverWait(driver,10)
+                .until(ExpectedConditions.presenceOfElementLocated(goToWishlistLocator));
+        goToWishlistBtn.click();
+        return new WishlistPage(driver);
+    }
+
+    public HoodiePage addItemsToBag(){
         WebElement selectSizeBtn = new WebDriverWait(driver,10)
                 .until(ExpectedConditions.presenceOfElementLocated(selectSizeLocator));
         selectSizeBtn.click();
         WebElement addToBagBtn = new WebDriverWait(driver,10)
                 .until(ExpectedConditions.presenceOfElementLocated(addToBagLocator));
         addToBagBtn.click();
+        return this;
+    }
+
+    public HoodiePage closeModal(){
         WebElement closeModalBtn = new WebDriverWait(driver,10)
                 .until(ExpectedConditions.presenceOfElementLocated(closeModalLocator));
         closeModalBtn.click();
-        addToBagBtn.click();
+        return this;
+    }
+
+    public HoodiePage goToBag(){
         WebElement goToBagBtn = new WebDriverWait(driver,10)
                 .until(ExpectedConditions.presenceOfElementLocated(goToBagLocator));
         goToBagBtn.click();
