@@ -3,12 +3,11 @@ package test;
 import driver.DriverSingleton;
 import model.Item;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import page.HoodiePage;
+import page.ProductPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -17,7 +16,6 @@ import static org.hamcrest.Matchers.equalTo;
 public class AdidasTest {
 
     private WebDriver driver;
-    private static final String RESOURCES_PATH = "src\\test\\resources\\";
 
     @BeforeMethod(alwaysRun = true)
     public void setUp()
@@ -28,7 +26,7 @@ public class AdidasTest {
     @Test
     public void addToWishlistTest() {
         Item expectedItem = new Item("TREFOIL HOODIE",null,null,"$65","1 ITEM");
-        Item wishlistItem = new HoodiePage(driver,"https://www.adidas.com/us/trefoil-hoodie/DT7963.html")
+        Item wishlistItem = new ProductPage(driver,"https://www.adidas.com/us/trefoil-hoodie/DT7963.html")
                 .openPage()
                 .addItemToWishlist()
                 .openWishlistPage()
@@ -39,14 +37,15 @@ public class AdidasTest {
     @Test
     public void freeDeliveryTest() {
         String expectedDeliveryValue = "FREE";
-        String deliveryValue = new HoodiePage(driver,"https://www.adidas.com/us/trefoil-hoodie/DT7963.html")
+        String deliveryValue = new ProductPage(driver,"https://www.adidas.com/us/trefoil-hoodie/DT7963.html")
                 .openPage()
+                .selectItemSize("M")
                 .addItemsToBag()
                 .closeModal()
                 .addItemsToBag()
-                .goToBag()
+                .openBagPage()
                 .getDeliveryValue();
-        Assert.assertEquals(deliveryValue, expectedDeliveryValue);
+        assertThat(deliveryValue, equalTo(expectedDeliveryValue));
     }
 
     @AfterMethod(alwaysRun = true)
